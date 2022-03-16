@@ -1,14 +1,11 @@
-package com.company;
-
+import com.company.FileHandler;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class UnitTests {
+public class UnitTest {
     public static final List<String> TEST_NAME_LIST = Arrays.asList("BAKER, THEODORE", "SMITH, ANDREW", "sMITH, AAron", "KENT, MADISON", "SMITH, FREDRICK");
 
     @org.junit.jupiter.api.Test
@@ -18,6 +15,13 @@ public class UnitTests {
         FileHandler testFileHandler = new FileHandler();
         List<String> nameList = testFileHandler.readNamesFromFile(reader);
         Assertions.assertIterableEquals(TEST_NAME_LIST, nameList);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void readFromEmptyList() throws IOException {
+        BufferedReader reader = new BufferedReader(new StringReader(""));
+        FileHandler testFileHandler = new FileHandler();
+        List<String> nameList = testFileHandler.readNamesFromFile(reader);
     }
 
     @org.junit.jupiter.api.Test

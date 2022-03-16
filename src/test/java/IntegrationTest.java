@@ -1,5 +1,5 @@
-package com.company;
-
+import com.company.FileHandler;
+import com.company.Main;
 import org.junit.jupiter.api.Assertions;
 
 import java.io.*;
@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class IntegrationTests {
+public class IntegrationTest {
     public static final String FILE_NAME = "test-names";
     public static final String VALID_TEST_FILE_PATH = "src/test/resources/" + FILE_NAME + ".txt";
-    public static final String INVALID_TEST_FILE_PATH = "src/test/resources/non-existent";
+    public static final String INVALID_TEST_FILE_PATH = "src/test/resources/non-existent.txt";
     public static final List<String> TEST_NAME_LIST = Arrays.asList("BAKER, THEODORE", "SMITH, ANDREW", "sMITH, AAron", "KENT, MADISON", "SMITH, FREDRICK");
     public static final List<String> SORTED_TEST_NAME_LIST = Arrays.asList("BAKER, THEODORE","KENT, MADISON", "sMITH, AAron", "SMITH, ANDREW", "SMITH, FREDRICK");
     public static final String OUTPUT_FILE_NAME = "output-test.txt";
@@ -26,7 +26,7 @@ public class IntegrationTests {
     }
 
     @org.junit.jupiter.api.Test
-    public void invalidEndToEndTest() {
+    public void invalidEndToEndTest() throws IOException {
         Exception e = Assertions.assertThrows(IOException.class, () -> {
             Main.main(new String[] {INVALID_TEST_FILE_PATH});
         });
@@ -40,15 +40,6 @@ public class IntegrationTests {
         FileHandler testFileHandler = new FileHandler();
         List<String> nameList = testFileHandler.readNamesFromFile(reader);
         Assertions.assertIterableEquals(TEST_NAME_LIST, nameList);
-    }
-
-    @org.junit.jupiter.api.Test
-    public void readNamesFromInvalidFilePath() throws FileNotFoundException {
-        BufferedReader reader = new BufferedReader(new FileReader(INVALID_TEST_FILE_PATH));
-        FileHandler testFileHandler = new FileHandler();
-        Assertions.assertThrows(IOException.class, () -> {
-            testFileHandler.readNamesFromFile(reader);
-        });
     }
 
     @org.junit.jupiter.api.Test
