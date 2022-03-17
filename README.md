@@ -14,8 +14,6 @@ After running the setup steps, run the program locally using the following comma
 
 `java -cp target/sort-names-1.0-SNAPSHOT.jar com.company.Main [file-path-to-text-file-containing-names]`
 
-If the text file containing names is within the src directory, you can use the file path relative to the src directory - e.g. "src/name-list.txt".
-Otherwise, please provide the absolute filepath.
 *Note, at this stage only one file can be given per execution, but the code can be easily adapted to take multiple files in the future.
 
 <h2>Testing:</h2>
