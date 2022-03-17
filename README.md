@@ -16,6 +16,8 @@ After running the setup steps, run the program locally using the following comma
 
 *Note, at this stage only one file can be given per execution, but the code can be easily adapted to take multiple files in the future.
 
+This will create a file in the sort-names directory with the name '[your file name]-sorted.txt'.
+
 <h2>Testing:</h2>
 
 The tests will have been run when you ran `mvn package`, but if you wish to run them again, you can do so by running `mvn test`
