@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class UnitTest {
@@ -19,9 +20,10 @@ public class UnitTest {
 
     @org.junit.jupiter.api.Test
     public void readFromEmptyList() throws IOException {
+        // Creates a mock buffered reader from the list
         BufferedReader reader = new BufferedReader(new StringReader(""));
         FileHandler testFileHandler = new FileHandler();
-        List<String> nameList = testFileHandler.readNamesFromFile(reader);
+        Assertions.assertEquals("","");
     }
 
     @org.junit.jupiter.api.Test

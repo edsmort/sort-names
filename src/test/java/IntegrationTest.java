@@ -23,15 +23,25 @@ public class IntegrationTest {
         FileHandler testFileHandler = new FileHandler();
         List<String> nameList = testFileHandler.readNamesFromFile(reader);
         Assertions.assertIterableEquals(SORTED_TEST_NAME_LIST, nameList);
+        sorted.delete();
     }
 
     @org.junit.jupiter.api.Test
-    public void invalidEndToEndTest() throws IOException {
+    public void invalidFilePathEndToEndTest() throws IOException {
         Exception e = Assertions.assertThrows(IOException.class, () -> {
             Main.main(new String[] {INVALID_TEST_FILE_PATH});
         });
         String expectedMessage = INVALID_TEST_FILE_PATH + " (No such file or directory)";
         Assertions.assertTrue(e.getMessage().equals(expectedMessage));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void multipleArgumentsTest() throws FileNotFoundException {
+        ByteArrayOutputStream stdOutCapture = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(stdOutCapture));
+        Main.main(new String[] {VALID_TEST_FILE_PATH, "second"});
+        Assertions.assertEquals("Usage: name-sorter [file-path]\n", stdOutCapture.toString());
+        System.setOut(System.out);
     }
 
     @org.junit.jupiter.api.Test
